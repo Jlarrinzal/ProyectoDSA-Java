@@ -1,6 +1,7 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
+import edu.upc.dsa.models.Usuario;
 
 public interface GameManager {
 
@@ -12,6 +13,14 @@ public interface GameManager {
     public void login(String correo, String password);
     // Metodo hacer una compra
     public Objeto hacerCompra(String Usuario, String nombreObjeto);
+    //Registrar Usuario
+    public Usuario registerUsuario(String correo, String password);
 
+    //auxiliares
+    Usuario getUsuarioPorCorreo(String correo);
     public int size();
+
+    Usuario getUsuarioPorNombre(String nombreObjeto);
+
+    Objeto getObjetoPorNombre(String nombreObjeto);
 }

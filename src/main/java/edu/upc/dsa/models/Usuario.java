@@ -18,6 +18,11 @@ public class Usuario {
 
     }
 
+    public Usuario(String correo, String password){
+        this.setCorreo(correo);
+        this.setPassword(password);
+    }
+
     public Usuario(String nombre, String apellido, String apellido2, String fecha, String correo, String password) {
         setNombre(nombre);
         setApellido(apellido);

@@ -53,11 +53,23 @@ public class GameManagerImpl implements GameManager {
     @Override
     public void login(String correo, String password) {
 
-        Usuario usuario = this.listaUsuarios.get(correo);
-        if(usuario != null && usuario.getPassword().equals(password)){
-            logger.info("Login con éxito");
+        Usuario usuario = null;
+        for (Usuario u : listaUsuarios) {
+            if (u.getCorreo().equals(correo)) {
+                usuario = u;
+                break;
+            }
         }
-        logger.info("Contraseña incorrecta");
+        if (usuario != null && usuario.getPassword().equals(password)) {
+            logger.info("Login con éxito");
+        } else {
+            logger.info("Contraseña incorrecta");
+        }
+       // Usuario usuario = this.Usuarios.get(correo);
+       // if(usuario != null && usuario.getPassword().equals(password)){
+         //   logger.info("Login con éxito");
+        //}
+        //logger.info("Contraseña incorrecta");
     }
 
     @Override
@@ -84,6 +96,14 @@ public class GameManagerImpl implements GameManager {
         return null;
     }
 
+    @Override
+    public Usuario registerUsuario(String correo, String password) {
+        Usuario usuario = new Usuario(correo, password);
+        listaUsuarios.add(usuario);
+        logger.info("Usuario registrado con éxito");
+        return usuario;
+    }
+
     //extras
 
     public Usuario getUsuarioPorNombre(String nombre){
@@ -99,6 +119,15 @@ public class GameManagerImpl implements GameManager {
         for (Objeto o: this.listaObjetos) {
             if(o.getNombre().equals(nombre)){
                 return o;
+            }
+        }
+        return null;
+    }
+
+    public Usuario getUsuarioPorCorreo(String correo){
+        for (Usuario u: this.listaUsuarios) {
+            if(u.getCorreo().equals(correo)){
+                return u;
             }
         }
         return null;

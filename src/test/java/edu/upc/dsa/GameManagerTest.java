@@ -49,7 +49,8 @@ public class GameManagerTest {
 
     @Test
     public void login(){
+        manager.addUsuario("Pedro", "Lopez", "Lopez", "140200", "DSA@gmail.com", "1234");
         manager.login("DSA@gmail.com","1234");
-        manager.login("algo@gmail.com","supersegura1");
+        manager.login("prueba@gmail.com","supersegura2");
     }
 }
