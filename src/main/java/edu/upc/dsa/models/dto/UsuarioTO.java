@@ -1,9 +1,11 @@
-package edu.upc.dsa.models;
+package edu.upc.dsa.models.dto;
+
+import edu.upc.dsa.models.Objeto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class UsuarioTO {
 
     String nombre;
     String apellido;
@@ -11,27 +13,25 @@ public class Usuario {
     String fecha;
     String correo;
     String password;
-    private List<Objeto> listaObjetosComprados = null;
     double dsaCoins = 500;
 
-    public Usuario() {
+    public UsuarioTO() {
 
     }
 
-    public Usuario(String correo, String password){
+    public UsuarioTO(String correo, String password){
         this.setCorreo(correo);
         this.setPassword(password);
     }
 
 
-    public Usuario(String nombre, String apellido, String apellido2, String fecha, String correo, String password) {
+    public UsuarioTO(String nombre, String apellido, String apellido2, String fecha, String correo, String password) {
         setNombre(nombre);
         setApellido(apellido);
         setApellido2(apellido2);
         setFecha(fecha);
         setCorreo(correo);
         setPassword(password);
-        this.listaObjetosComprados = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -80,14 +80,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Objeto> getListaObjetosComprados() {
-        return listaObjetosComprados;
-    }
-
-    public void setListaObjetosComprados(List<Objeto> listaObjetosComprados) {
-        this.listaObjetosComprados = listaObjetosComprados;
     }
 
     public double getDsaCoins() {

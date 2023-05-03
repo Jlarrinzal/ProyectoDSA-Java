@@ -5,6 +5,8 @@ import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.dto.Credencials;
+import edu.upc.dsa.models.dto.UsuarioTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,14 +37,14 @@ public class GameService {
     @POST
     @ApiOperation(value = "Añadir usuario", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response= Usuario.class),
+            @ApiResponse(code = 201, message = "Successful", response= UsuarioTO.class),
             @ApiResponse(code = 500, message = "Validation Error")
 
     })
 
     @Path("/addUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUsuario(Usuario usuario) {
+    public Response addUsuario(UsuarioTO usuario) {
 
         if (usuario.getNombre()==null) return Response.status(500).entity(usuario).build();
         this.manager.addUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getApellido2(), usuario.getFecha(), usuario.getCorreo(), usuario.getPassword());
@@ -76,12 +78,12 @@ public class GameService {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
             @ApiResponse(code = 404, message = "No existe")
     })
-    @Path("/{correo}{password}")
+    @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(@PathParam("correo") String correo, @PathParam("password") String password) {
-        Usuario u = this.manager.getUsuarioPorCorreo(correo);
+    public Response login(Credencials credencials) {
+        Usuario u = this.manager.getUsuarioPorCorreo(credencials);
         if (u != null) {
-            if (u.getPassword().equals(password)) {
+            if (u.getPassword().equals(credencials)) {
                 return Response.status(201).entity(u).build();
             }
         }
