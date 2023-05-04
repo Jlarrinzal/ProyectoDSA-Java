@@ -4,19 +4,17 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.dto.Credencials;
-import edu.upc.dsa.models.dto.UsuarioTO;
+import edu.upc.dsa.models.dto.Login;
+import edu.upc.dsa.models.dto.RegistroTO;
+import edu.upc.dsa.models.dto.Usuario;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Api(value = "/Game", description = "Endpoint to Game Service")
 @Path("/game")
@@ -33,22 +31,40 @@ public class GameService {
         }
     }
 
-    //Añadimos usuario
+    //Registrar Usuario
     @POST
-    @ApiOperation(value = "Añadir usuario", notes = "asdasd")
+    @ApiOperation(value = "Registrar usuario", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response= UsuarioTO.class),
+            @ApiResponse(code = 201, message = "Successful", response= Usuario.class),
             @ApiResponse(code = 500, message = "Validation Error")
 
     })
 
-    @Path("/addUsuario")
+    @Path("/RegistrarUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUsuario(UsuarioTO usuario) {
+    public Response RegistrarUsuario(RegistroTO usuario) {
 
-        if (usuario.getNombre()==null) return Response.status(500).entity(usuario).build();
+        Usuario usuario1 = new Usuario(usuario.getNombre(),usuario.getCorreo(), usuario.getPassword());
+        if (usuario1.getUsuario().isEmpty() || usuario1.getCorreo().isEmpty() || usuario1.getPassword().isEmpty()){
+            return Response.status(500).build();
+
+        }
+
+        Usuario name = this.manager.getUsuarioPorNombre(usuario.getNombre());
+        Usuario correo = this.manager.getUsuarioPorCorreo(usuario.getCorreo());
+        if (name != null || correo != null){
+            return Response.status(500).build();
+
+        }
+        else{
+            this.manager.addUsuario(usuario1.getUsuario(), usuario1.getCorreo(), usuario1.getPassword());
+            return Response.status(200).build();
+        }
+
+
+       /* if (usuario.getNombre()==null) return Response.status(500).entity(usuario).build();
         this.manager.addUsuario(usuario.getNombre(), usuario.getCorreo(), usuario.getPassword());
-        return Response.status(201).entity(usuario).build();
+        return Response.status(201).entity(usuario).build();*/
     }
 
     //Añadir objeto
@@ -75,13 +91,13 @@ public class GameService {
     @POST
     @ApiOperation(value = "login usuario", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
+            @ApiResponse(code = 201, message = "Successful", response = Login.class),
             @ApiResponse(code = 404, message = "No existe")
     })
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(Credencials credencials) {
-        UsuarioTO u = this.manager.getUsuarioPorCorreo(credencials.getCorreo());
+    public Response login(Login credencials) {
+        Usuario u = this.manager.getUsuarioPorCorreo(credencials.getCorreo());
         if (u != null) {
             if (u.getPassword().equals(credencials.getPassword())) {
                 return Response.status(201).entity(u).build();

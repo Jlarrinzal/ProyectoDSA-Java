@@ -1,11 +1,6 @@
 package edu.upc.dsa.models.dto;
 
-import edu.upc.dsa.models.Objeto;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class UsuarioTO {
+public class RegistroTO {
 
     String nombre;
     String correo;
@@ -16,20 +11,20 @@ public class UsuarioTO {
 
     double dsaCoins = 500;*/
 
-    public UsuarioTO() {
+    public RegistroTO() {
 
     }
 
-    public UsuarioTO(String correo, String password){
+    public RegistroTO(String correo, String password){
         this.setCorreo(correo);
         this.setPassword(password);
     }
 
 
-    public UsuarioTO(String nombre, String correo, String password) {
-        setNombre(nombre);
-        setCorreo(correo);
-        setPassword(password);
+    public RegistroTO(String nombre, String correo, String password) {
+        this.setNombre(nombre);
+        this.setCorreo(correo);
+        this.setPassword(password);
     }
 
     public String getNombre() {

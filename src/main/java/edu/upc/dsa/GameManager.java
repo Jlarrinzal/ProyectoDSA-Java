@@ -1,12 +1,13 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.dto.UsuarioTO;
+import edu.upc.dsa.models.dto.RegistroTO;
+import edu.upc.dsa.models.dto.Usuario;
 
 public interface GameManager {
 
     //Añadir Usuario
-    public void addUsuario(String nombre, String correo, String password);
+    public Usuario addUsuario(String nombre, String correo, String password);
     //Añadir Objeto/Producto
     public void addObjeto(String nombre, String descripcion, double precio);
     //Login Usuario
@@ -15,10 +16,10 @@ public interface GameManager {
     //public Objeto hacerCompra(String Usuario, String nombreObjeto);
 
     //auxiliares
-    UsuarioTO getUsuarioPorCorreo(String correo);
+    Usuario getUsuarioPorCorreo(String correo);
     public int size();
 
-    UsuarioTO getUsuarioPorNombre(String nombreObjeto);
+    Usuario getUsuarioPorNombre(String nombreObjeto);
 
     Objeto getObjetoPorNombre(String nombreObjeto);
 }

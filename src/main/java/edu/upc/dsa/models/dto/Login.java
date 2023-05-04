@@ -1,15 +1,15 @@
 package edu.upc.dsa.models.dto;
 
-public class Credencials {
+public class Login {
 
     String correo;
 
     String password;
 
-    public Credencials(){
+    public Login(){
 
     }
-    public Credencials(String correo, String password){
+    public Login(String correo, String password){
         this.setCorreo(correo);
         this.setPassword(password);
 

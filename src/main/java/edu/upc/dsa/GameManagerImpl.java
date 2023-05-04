@@ -1,17 +1,19 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.dto.UsuarioTO;
+import edu.upc.dsa.models.dto.RegistroTO;
+import edu.upc.dsa.models.dto.Usuario;
 import org.apache.log4j.Logger;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class GameManagerImpl implements GameManager {
 
-    HashMap<String, UsuarioTO> Usuarios;
-    List<UsuarioTO> listaUsuarios;
+    HashMap<String, Usuario> Usuarios;
+    List<Usuario> listaUsuarios;
     HashMap<String, Objeto> Objetos;
     List<Objeto> listaObjetos;
 
@@ -31,16 +33,20 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void addUsuario(String nombre, String correo, String password) {
+    public Usuario addUsuario(String nombre, String correo, String password) {
 
+        Usuario u = new Usuario(nombre, correo, password);
+        logger.info("Usuario añadido " + u);
+        return u;
+        /*
         if (Usuarios.get(correo) == null){
 
-            this.listaUsuarios.add(new UsuarioTO(nombre, correo, password));
+            this.listaUsuarios.add(new Usuario(nombre, correo, password));
 
             logger.info("Se ha realizado correctamente");
         }
         else
-            logger.info("El correo ya existe con un usuario");
+            logger.info("El correo ya existe con un usuario");*/
     }
 
     @Override
@@ -53,8 +59,8 @@ public class GameManagerImpl implements GameManager {
     @Override
     public void login(String correo, String password) {
 
-        UsuarioTO usuario = null;
-        for (UsuarioTO u : listaUsuarios) {
+       /* RegistroTO usuario = null;
+        for (RegistroTO u : listaUsuarios) {
             if (u.getCorreo().equals(correo)) {
                 usuario = u;
                 break;
@@ -64,7 +70,7 @@ public class GameManagerImpl implements GameManager {
             logger.info("Login con éxito");
         } else {
             logger.info("Contraseña incorrecta");
-        }
+        }*/
     }
 
    /* @Override
@@ -93,9 +99,9 @@ public class GameManagerImpl implements GameManager {
 
     //extras
 
-    public UsuarioTO getUsuarioPorNombre(String nombre){
-        for (UsuarioTO u: this.listaUsuarios) {
-            if(u.getNombre().equals(nombre)){
+    public Usuario getUsuarioPorNombre(String nombre){
+        for (Usuario u: this.listaUsuarios) {
+            if(u.getUsuario().equals(nombre)){
                 return u;
             }
         }
@@ -111,8 +117,8 @@ public class GameManagerImpl implements GameManager {
         return null;
     }
 
-    public UsuarioTO getUsuarioPorCorreo(String correo){
-        for (UsuarioTO u: this.listaUsuarios) {
+    public Usuario getUsuarioPorCorreo(String correo){
+        for (Usuario u: this.listaUsuarios) {
             if(u.getCorreo().equals(correo)){
                 return u;
             }
