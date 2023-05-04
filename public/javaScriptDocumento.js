@@ -18,6 +18,7 @@ function logear(){
         dataType: 'json',
         success: function(result){
             localStorage.setItem("usuarioactivo", correo);
+            alert("Usuario logeado correctamente.");
         },
         error: function(error){
             if (correo == "" || contrasena == "")
@@ -29,7 +30,7 @@ function logear(){
     });
 }
 function registrar() {
-    var username = $('#username').val();
+    var username = $('#usuario').val();
     var password = $('#contrasena').val();
     var password2 = $('#contrasena2').val();
     var email = $('#email').val();
