@@ -28,8 +28,8 @@ public class GameService {
         this.manager = GameManagerImpl.getInstance();
         if (manager.size() == 0) {
             this.manager.addObjeto("pokeball", "Captura Pokemon", 5.00);
-            this.manager.addUsuario("Jose", "Larrinzal", "Ji", "090700", "jose@gmail.com", "1234");
-            this.manager.addUsuario("Prueba", "Sí", "También", "090909", "hola@gmail.com", "123");
+            this.manager.addUsuario("Jose", "Larrinzal", "Ji");
+            this.manager.addUsuario("Prueba", "Sí", "También");
         }
     }
 
