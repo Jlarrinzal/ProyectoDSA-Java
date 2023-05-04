@@ -67,7 +67,7 @@ public class GameManagerImpl implements GameManager {
         }
     }
 
-    @Override
+   /* @Override
     public Objeto hacerCompra(String Usuario, String nombreObjeto) {
 
         UsuarioTO usuario = getUsuarioPorNombre(Usuario);
@@ -89,7 +89,7 @@ public class GameManagerImpl implements GameManager {
             }
         }
         return null;
-    }
+    }*/
 
     //extras
 

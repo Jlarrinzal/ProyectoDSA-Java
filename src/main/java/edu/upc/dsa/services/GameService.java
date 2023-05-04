@@ -92,7 +92,7 @@ public class GameService {
 
 
     // comprar objetos por parte de un usuario
-    @POST
+    /*@POST
     @ApiOperation(value = "crear objeto nuevo", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
@@ -108,6 +108,6 @@ public class GameService {
         if (objeto.getNombre()==null || objeto.getDescripcion()==null)  return Response.status(500).build();
         this.manager.hacerCompra(usuario.getNombre(), objeto.getNombre());
         return Response.status(201).entity(objeto).build();
-    }
+    }*/
 
 }

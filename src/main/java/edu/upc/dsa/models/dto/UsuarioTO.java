@@ -8,12 +8,13 @@ import java.util.List;
 public class UsuarioTO {
 
     String nombre;
-    String apellido;
-    String apellido2;
-    String fecha;
     String correo;
     String password;
-    double dsaCoins = 500;
+    /*String apellido;
+    String apellido2;
+    String fecha;
+
+    double dsaCoins = 500;*/
 
     public UsuarioTO() {
 
@@ -39,7 +40,7 @@ public class UsuarioTO {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
+    /*public String getApellido() {
         return apellido;
     }
 
@@ -61,7 +62,7 @@ public class UsuarioTO {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    }
+    }*/
 
     public String getCorreo() {
         return correo;
@@ -79,11 +80,11 @@ public class UsuarioTO {
         this.password = password;
     }
 
-    public double getDsaCoins() {
+    /*public double getDsaCoins() {
         return dsaCoins;
     }
 
     public void setDsaCoins(double dsaCoins) {
         this.dsaCoins = dsaCoins;
-    }
+    }*/
 }

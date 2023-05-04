@@ -12,7 +12,7 @@ public interface GameManager {
     //Login Usuario
     public void login(String correo, String password);
     // Metodo hacer una compra
-    public Objeto hacerCompra(String Usuario, String nombreObjeto);
+    //public Objeto hacerCompra(String Usuario, String nombreObjeto);
 
     //auxiliares
     UsuarioTO getUsuarioPorCorreo(String correo);
