@@ -47,7 +47,7 @@ public class GameService {
     public Response addUsuario(UsuarioTO usuario) {
 
         if (usuario.getNombre()==null) return Response.status(500).entity(usuario).build();
-        this.manager.addUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getApellido2(), usuario.getFecha(), usuario.getCorreo(), usuario.getPassword());
+        this.manager.addUsuario(usuario.getNombre(), usuario.getCorreo(), usuario.getPassword());
         return Response.status(201).entity(usuario).build();
     }
 

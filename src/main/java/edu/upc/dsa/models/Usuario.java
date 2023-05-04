@@ -34,6 +34,12 @@ public class Usuario {
         this.listaObjetosComprados = new ArrayList<>();
     }
 
+    public Usuario(String nombre, String correo, String password) {
+        setNombre(nombre);
+        setCorreo(correo);
+        setPassword(password);
+    }
+
     public String getNombre() {
         return nombre;
     }

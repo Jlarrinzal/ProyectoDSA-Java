@@ -2,6 +2,7 @@ package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.dto.UsuarioTO;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void addUsuario(String nombre, String apellido, String apellido2, String fecha, String correo, String password) {
+    public void addUsuario(String nombre, String correo, String password) {
 
         if (Usuarios.get(correo) == null){
 
-            this.listaUsuarios.add(new Usuario(nombre, apellido, apellido2, fecha, correo, password));
+            this.listaUsuarios.add(new Usuario(nombre, correo, password));
 
             logger.info("Se ha realizado correctamente");
         }

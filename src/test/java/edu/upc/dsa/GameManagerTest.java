@@ -19,8 +19,8 @@ public class GameManagerTest {
     public void Inicializar() {
 
         manager = new GameManagerImpl();
-        manager.addUsuario("Jose", "Larrinzal", "Jimenez", "090700", "algo@gmail.com", "supersegura1");
-        manager.addUsuario("Pedro", "Lopez", "Lopez", "140200", "prueba@gmail.com", "supersegura2");
+        manager.addUsuario("Jose", "Larrinzal", "Jimenez");
+        manager.addUsuario("Pedro", "Lopez", "Lopez");
 
         manager.addObjeto("pikachu","tipo electrico", 59.99);
         manager.addObjeto("charmander","tipo fuego", 45.99);
@@ -29,7 +29,7 @@ public class GameManagerTest {
 
     @Test
     public void addUsuario() {
-        manager.addUsuario("Hola","Prueba","xd", "090909","asdsd","asd");
+        manager.addUsuario("Hola","Prueba","xd");
     }
 
     @Test
@@ -43,13 +43,13 @@ public class GameManagerTest {
         manager.hacerCompra("Jose", "pikachu");
         manager.hacerCompra("Pedro", "pikachu");
         manager.hacerCompra("Juan", "pikachu");
-        manager.addUsuario("Juan","Prueba","xd", "090909","asdsd","asd");
+        manager.addUsuario("Juan","Prueba","xd");
         manager.hacerCompra("Juan", "pikachu");
     }
 
     @Test
     public void login(){
-        manager.addUsuario("Pedro", "Lopez", "Lopez", "140200", "DSA@gmail.com", "1234");
+        manager.addUsuario("Pedro", "Lopez", "Lopez");
         manager.login("DSA@gmail.com","1234");
         manager.login("prueba@gmail.com","supersegura2");
     }
