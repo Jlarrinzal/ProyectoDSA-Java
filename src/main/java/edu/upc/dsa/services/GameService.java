@@ -28,7 +28,7 @@ public class GameService {
         this.manager = GameManagerImpl.getInstance();
         if (manager.size() == 0) {
             this.manager.addObjeto("pokeball", "Captura Pokemon", 5.00);
-            this.manager.addUsuario("Jose", "Larrinzal", "Ji");
+            this.manager.addUsuario("Jose", "jose@gmail.com", "Ji");
             this.manager.addUsuario("Prueba", "Sí", "También");
         }
     }
@@ -72,18 +72,18 @@ public class GameService {
 
 
     //login
-    @GET
+    @POST
     @ApiOperation(value = "login usuario", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
             @ApiResponse(code = 404, message = "No existe")
     })
     @Path("/login")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response login(Credencials credencials) {
-        Usuario u = this.manager.getUsuarioPorCorreo(credencials);
+        Usuario u = this.manager.getUsuarioPorCorreo(credencials.getCorreo());
         if (u != null) {
-            if (u.getPassword().equals(credencials)) {
+            if (u.getPassword().equals(credencials.getPassword())) {
                 return Response.status(201).entity(u).build();
             }
         }
