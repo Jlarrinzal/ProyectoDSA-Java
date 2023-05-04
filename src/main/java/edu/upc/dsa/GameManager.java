@@ -6,7 +6,7 @@ import edu.upc.dsa.models.Usuario;
 public interface GameManager {
 
     //Añadir Usuario
-    public void addUsuario(String nombre, String apellido, String apellido2, String fecha, String correo, String password);
+    public void addUsuario(String nombre, String correo, String password);
     //Añadir Objeto/Producto
     public void addObjeto(String nombre, String descripcion, double precio);
     //Login Usuario

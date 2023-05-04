@@ -25,11 +25,8 @@ public class UsuarioTO {
     }
 
 
-    public UsuarioTO(String nombre, String apellido, String apellido2, String fecha, String correo, String password) {
+    public UsuarioTO(String nombre, String correo, String password) {
         setNombre(nombre);
-        setApellido(apellido);
-        setApellido2(apellido2);
-        setFecha(fecha);
         setCorreo(correo);
         setPassword(password);
     }

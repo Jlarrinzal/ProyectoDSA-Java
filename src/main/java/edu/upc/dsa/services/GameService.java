@@ -28,8 +28,8 @@ public class GameService {
         this.manager = GameManagerImpl.getInstance();
         if (manager.size() == 0) {
             this.manager.addObjeto("pokeball", "Captura Pokemon", 5.00);
-            this.manager.addUsuario("Jose", "Larrinzal", "Ji", "090700", "jose@gmail.com", "1234");
-            this.manager.addUsuario("Prueba", "Sí", "También", "090909", "hola@gmail.com", "123");
+            this.manager.addUsuario("Jose","jose@gmail.com", "1234");
+            this.manager.addUsuario("Prueba", "hola@gmail.com", "123456");
         }
     }
 
@@ -47,7 +47,7 @@ public class GameService {
     public Response addUsuario(UsuarioTO usuario) {
 
         if (usuario.getNombre()==null) return Response.status(500).entity(usuario).build();
-        this.manager.addUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getApellido2(), usuario.getFecha(), usuario.getCorreo(), usuario.getPassword());
+        this.manager.addUsuario(usuario.getNombre(), usuario.getCorreo(), usuario.getPassword());
         return Response.status(201).entity(usuario).build();
     }
 
@@ -78,7 +78,7 @@ public class GameService {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
             @ApiResponse(code = 404, message = "No existe")
     })
-    @Path("/login")
+    /*@Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(Credencials credencials) {
         Usuario u = this.manager.getUsuarioPorCorreo(credencials);
@@ -98,7 +98,7 @@ public class GameService {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 500, message = "Validation Error")
 
-    })
+    })*/
 
     @Path("/{Usuario}/{nombreObjeto}")
     @Consumes(MediaType.APPLICATION_JSON)

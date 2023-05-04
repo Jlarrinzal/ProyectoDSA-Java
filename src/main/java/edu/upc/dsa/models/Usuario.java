@@ -14,7 +14,7 @@ public class Usuario {
     private List<Objeto> listaObjetosComprados = null;
     double dsaCoins = 500;
 
-    public Usuario() {
+    public Usuario(String nombre, String correo, String password) {
 
     }
 
