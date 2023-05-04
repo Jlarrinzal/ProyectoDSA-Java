@@ -81,7 +81,7 @@ public class GameService {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(Credencials credencials) {
-        Usuario u = this.manager.getUsuarioPorCorreo(credencials.getCorreo());
+        UsuarioTO u = this.manager.getUsuarioPorCorreo(credencials.getCorreo());
         if (u != null) {
             if (u.getPassword().equals(credencials.getPassword())) {
                 return Response.status(201).entity(u).build();
@@ -104,7 +104,7 @@ public class GameService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response hacerCompra(@PathParam("Usuario")  String Usuario, @PathParam("nombreObjeto")  String nombreObjeto) {
         Objeto objeto = this.manager.getObjetoPorNombre(nombreObjeto);
-        Usuario usuario = this.manager.getUsuarioPorNombre(Usuario);
+        UsuarioTO usuario = this.manager.getUsuarioPorNombre(Usuario);
         if (objeto.getNombre()==null || objeto.getDescripcion()==null)  return Response.status(500).build();
         this.manager.hacerCompra(usuario.getNombre(), objeto.getNombre());
         return Response.status(201).entity(objeto).build();

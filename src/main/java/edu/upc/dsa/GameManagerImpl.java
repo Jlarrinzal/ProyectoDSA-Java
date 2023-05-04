@@ -1,7 +1,6 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.dto.UsuarioTO;
 import org.apache.log4j.Logger;
 
@@ -11,8 +10,8 @@ import java.util.List;
 
 public class GameManagerImpl implements GameManager {
 
-    HashMap<String, Usuario> Usuarios;
-    List<Usuario> listaUsuarios;
+    HashMap<String, UsuarioTO> Usuarios;
+    List<UsuarioTO> listaUsuarios;
     HashMap<String, Objeto> Objetos;
     List<Objeto> listaObjetos;
 
@@ -36,7 +35,7 @@ public class GameManagerImpl implements GameManager {
 
         if (Usuarios.get(correo) == null){
 
-            this.listaUsuarios.add(new Usuario(nombre, correo, password));
+            this.listaUsuarios.add(new UsuarioTO(nombre, correo, password));
 
             logger.info("Se ha realizado correctamente");
         }
@@ -54,8 +53,8 @@ public class GameManagerImpl implements GameManager {
     @Override
     public void login(String correo, String password) {
 
-        Usuario usuario = null;
-        for (Usuario u : listaUsuarios) {
+        UsuarioTO usuario = null;
+        for (UsuarioTO u : listaUsuarios) {
             if (u.getCorreo().equals(correo)) {
                 usuario = u;
                 break;
@@ -66,17 +65,12 @@ public class GameManagerImpl implements GameManager {
         } else {
             logger.info("Contraseña incorrecta");
         }
-       // Usuario usuario = this.Usuarios.get(correo);
-       // if(usuario != null && usuario.getPassword().equals(password)){
-         //   logger.info("Login con éxito");
-        //}
-        //logger.info("Contraseña incorrecta");
     }
 
     @Override
     public Objeto hacerCompra(String Usuario, String nombreObjeto) {
 
-        Usuario usuario = getUsuarioPorNombre(Usuario);
+        UsuarioTO usuario = getUsuarioPorNombre(Usuario);
         if (usuario == null) {
             logger.info("Usuario " + Usuario + " no existe");
         }
@@ -86,7 +80,7 @@ public class GameManagerImpl implements GameManager {
                 logger.info("No tienes money");
             }
             else{
-                usuario.getListaObjetosComprados().add(objeto);
+             //   usuario.getListaObjetosComprados().add(objeto);
                 double saldo = usuario.getDsaCoins() - objeto.getPrecio();
                 usuario.setDsaCoins(saldo);
                 logger.info("Objeto " + nombreObjeto + " comprado");
@@ -97,18 +91,10 @@ public class GameManagerImpl implements GameManager {
         return null;
     }
 
-    @Override
-    public Usuario registerUsuario(String correo, String password) {
-        Usuario usuario = new Usuario(correo, password);
-        listaUsuarios.add(usuario);
-        logger.info("Usuario registrado con éxito");
-        return usuario;
-    }
-
     //extras
 
-    public Usuario getUsuarioPorNombre(String nombre){
-        for (Usuario u: this.listaUsuarios) {
+    public UsuarioTO getUsuarioPorNombre(String nombre){
+        for (UsuarioTO u: this.listaUsuarios) {
             if(u.getNombre().equals(nombre)){
                 return u;
             }
@@ -125,8 +111,8 @@ public class GameManagerImpl implements GameManager {
         return null;
     }
 
-    public Usuario getUsuarioPorCorreo(String correo){
-        for (Usuario u: this.listaUsuarios) {
+    public UsuarioTO getUsuarioPorCorreo(String correo){
+        for (UsuarioTO u: this.listaUsuarios) {
             if(u.getCorreo().equals(correo)){
                 return u;
             }
