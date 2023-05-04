@@ -8,22 +8,22 @@ function irIndex(){
     window.location.href="index.html";
 }
 function logear(){
-    var usuario = $('#usuario').val();
+    var correo = $('#correo').val();
     var contrasena = $('#contrasena').val();
     $.ajax({
         contentType: "application/json",
         type: 'POST',
         url: URL+'/dsaApp/game/login',
-        data: JSON.stringify({ "usuario": usuario, "contrasena": contrasena }),
+        data: JSON.stringify({ "correo": correo, "contrasena": contrasena }),
         dataType: 'json',
         success: function(result){
-            localStorage.setItem("usuarioactivo", usuario);
+            localStorage.setItem("usuarioactivo", correo);
         },
         error: function(error){
-            if (usuario == "" || contrasena == "")
-                alert("You left something blank. Please try again!");
+            if (correo == "" || contrasena == "")
+                alert("Has dejado algo en blanco, prueba de nuevo!");
             else{
-                alert("Wrong username or password. Please try again!");
+                alert("Correo o contraseña incorrecta, prueba de nuevo!");
             }
         }
     });
@@ -39,7 +39,7 @@ function registrar() {
             contentType: "application/json",
             type: 'POST',
             url: URL + '/dsaApp/user/addUsuario',
-            data: JSON.stringify({"Usuario": username, "Email":email, "Contrasena": password}),
+            data: JSON.stringify({"nombre": username, "correo":email, "password": password}),
             dataType: 'json',
             success: function (result) {
                 window.location.href = "Login.html";
